@@ -1,11 +1,11 @@
-var createError = require('http-errors')
-var express = require('express')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+const createError = require('http-errors')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
-var documentsRouter = require('./routes/documents')
+const documentsRouter = require('./routes/documents')
 
-var app = express()
+const app = express()
 
 // view engine setup
 app.use(logger('dev'))
