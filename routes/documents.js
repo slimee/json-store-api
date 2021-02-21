@@ -1,14 +1,15 @@
-var express = require('express')
-var router = express.Router()
-var { col } = require('../db')
-var documents = col('documents')
-var debug = require('debug')('api:json-store')
+const express = require('express')
+const router = express.Router()
+const { col } = require('../db')
+const documents = col('documents')
+const debug = require('debug')('api:json-store')
 
 router.get('/:_id', (req, res) => {
   const _id = req.params._id;
+  const password = req.query.p;
   documents.findOne({ _id })
     .then((document) => {
-      delete document.password;
+      if(!password || password !== document.password) delete document.password;
       return res.send(document);
     })
     .catch(debug)
